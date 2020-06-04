@@ -182,19 +182,19 @@ public class StatsDEmitterTest
   {
     StatsDClient client = EasyMock.createMock(StatsDClient.class);
     StatsDEmitter emitter = new StatsDEmitter(
-            new StatsDEmitterConfig("localhost", 8888, null, null, true, null, null, true, null, true, null),
-            new ObjectMapper(),
-            client
+        new StatsDEmitterConfig("localhost", 8888, null, null, true, null, null, true, null, true, null),
+        new ObjectMapper(),
+        client
     );
     client.time("druid.query.time", 10,
-            "druid_service:druid/broker", "dataSource:data-source", "type:groupBy", "hostname:brokerHost1"
+                "druid_service:druid/broker", "dataSource:data-source", "type:groupBy", "hostname:brokerHost1"
     );
     EasyMock.replay(client);
     emitter.emit(new ServiceMetricEvent.Builder()
-            .setDimension("dataSource", "data-source")
-            .setDimension("type", "groupBy")
-            .build(DateTimes.nowUtc(), "query/time", 10)
-            .build("druid/broker", "brokerHost1")
+                     .setDimension("dataSource", "data-source")
+                     .setDimension("type", "groupBy")
+                     .build(DateTimes.nowUtc(), "query/time", 10)
+                     .build("druid/broker", "brokerHost1")
     );
     EasyMock.verify(client);
   }

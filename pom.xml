@@ -179,6 +179,7 @@
         <module>extensions-contrib/influxdb-emitter</module>
         <module>extensions-contrib/opencensus-extensions</module>
         <module>extensions-contrib/confluent-extensions</module>
+        <module>extensions-contrib/opentracing-emitter</module>
         <!-- distribution packaging -->
         <module>distribution</module>
     </modules>
